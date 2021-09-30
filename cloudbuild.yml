@@ -18,6 +18,7 @@ steps:
         git config --global user.email "98767786228@cloudbuild.gserviceaccount.com"
         git config --global user.name "Cloud Build Service Account"
         git clone https://github.com/wheelers-websites/CloudGuruChallenge_21.08-env.git
+        cd CloudGuruChallenge_21.08-env
         git checkout test
         echo "gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA" > deployment/app/image.txt
         cat deployment/app/image.txt
