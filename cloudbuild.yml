@@ -11,7 +11,21 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA']
     timeout: 300s
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args: ['run', 'deploy', 'wheelersadvice', '--image', 'gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA', '--region', 'us-central1']
-    entrypoint: gcloud
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+      - '-c'
+      - |
+        gcloud source repos clone github_wheelers-websites_cloudguruchallenge_21.08-env --project=$PROJECT_ID
+        git checkout test
+        echo "gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA" > deployment/app/image.txt
+        cat deployment/app/image.txt
+        git add deployment/app/image.txt
+        git commit -m "app deployment for $COMMIT_SHA"
+        git push
+    entrypoint: /bin/sh
     timeout: 300s
+
+#  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#    args: ['run', 'deploy', 'wheelersadvice', '--image', 'gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA', '--region', 'us-central1']
+#    entrypoint: gcloud
+#    timeout: 300s
