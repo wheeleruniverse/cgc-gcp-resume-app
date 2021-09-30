@@ -15,13 +15,13 @@ steps:
     args:
       - '-c'
       - |
-        gcloud source repos clone github_wheelers-websites_cloudguruchallenge_21.08-env --project=$PROJECT_ID
+        git clone https://github.com/wheelers-websites/CloudGuruChallenge_21.08-env.git
         git checkout test
         echo "gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA" > deployment/app/image.txt
         cat deployment/app/image.txt
         git add deployment/app/image.txt
         git commit -m "app deployment for $COMMIT_SHA"
-        git push
+        git push --set-upstream origin test
     entrypoint: /bin/sh
     timeout: 300s
 
