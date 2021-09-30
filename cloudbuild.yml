@@ -17,14 +17,14 @@ steps:
       - |
         git config --global user.email "98767786228@cloudbuild.gserviceaccount.com"
         git config --global user.name "Cloud Build Service Account"
-        git clone https://github.com/wheelers-websites/CloudGuruChallenge_21.08-env.git
-        cd CloudGuruChallenge_21.08-env
-        git checkout test
-        echo "gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA" > deployment/app/image.txt
-        cat deployment/app/image.txt
-        git add deployment/app/image.txt
+        gcloud source repos clone wheelersadvice/cicd/app --project=cloudguruchallenge-2108
+        cd wheelersadvice/cicd/app
+        git checkout candidate
+        echo "gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA" > image.txt
+        cat image.txt
+        git add image.txt
         git commit -m "app deployment for $COMMIT_SHA"
-        git push --set-upstream origin test
+        git push -u origin candidate
     entrypoint: /bin/sh
     timeout: 300s
 
