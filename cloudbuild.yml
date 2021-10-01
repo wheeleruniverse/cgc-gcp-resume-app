@@ -27,8 +27,3 @@ steps:
         git push -u origin candidate
     entrypoint: /bin/sh
     timeout: 300s
-
-#  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-#    args: ['run', 'deploy', 'wheelersadvice', '--image', 'gcr.io/$PROJECT_ID/wheelersadvice:$COMMIT_SHA', '--region', 'us-central1']
-#    entrypoint: gcloud
-#    timeout: 300s
