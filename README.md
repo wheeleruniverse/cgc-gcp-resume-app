@@ -1,4 +1,4 @@
-# CloudGuruChallenge_21.08-app
+# cgc-gcp-resume-app
 
 ## Project Overview
 
@@ -6,19 +6,19 @@ This repository was created as part of the ["Your Resume on GCP" #CloudGuruChall
 It's one of three that serves a distinct purpose towards a common goal. 
 
 ### App
-> https://github.com/wheelers-websites/CloudGuruChallenge_21.08-app
+> https://github.com/wheelerswebservices/cgc-gcp-resume-app
 
 [See Repository Overview](#repository-overview)
 
 ### Env
-> https://github.com/wheelers-websites/CloudGuruChallenge_21.08-env
+> https://github.com/wheelerswebservices/cgc-gcp-resume-env
 
-[More...](https://github.com/wheelers-websites/CloudGuruChallenge_21.08-env/blob/main/README.md)
+[More...](https://github.com/wheelerswebservices/cgc-gcp-resume-env/blob/main/README.md)
 
 ### Web
-> https://github.com/wheelers-websites/CloudGuruChallenge_21.08-web
+> https://github.com/wheelerswebservices/cgc-gcp-resume-web
 
-[More...](https://github.com/wheelers-websites/CloudGuruChallenge_21.08-web/blob/main/README.md)
+[More...](https://github.com/wheelerswebservices/cgc-gcp-resume-web/blob/main/README.md)
 
 ## Repository Overview
 
