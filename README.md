@@ -120,18 +120,18 @@ You can run the Flask application locally for development and testing.
 
 ```
 .
-├── Dockerfile              \# Defines the container image for the Flask app
-├── README.md               \# This file
-├── cloudbuild.yml          \# Configuration for Google Cloud Build
-├── index.py                \# Main Flask application file with API logic
-├── requirements.txt        \# Python package dependencies
-├── static                  \# Static assets for Swagger UI
-│   ├── api.json            \# The OpenAPI specification file
-│   ├── css/                \# CSS for Swagger UI
-│   ├── img/                \# Favicon images
-│   └── js/                 \# JavaScript for Swagger UI
+├── Dockerfile              # Defines the container image for the Flask app
+├── README.md               # This file
+├── cloudbuild.yml          # Configuration for Google Cloud Build
+├── index.py                # Main Flask application file with API logic
+├── requirements.txt        # Python package dependencies
+├── static                  # Static assets for Swagger UI
+│   ├── api.json            # The OpenAPI specification file
+│   ├── css/                # CSS for Swagger UI
+│   ├── img/                # Favicon images
+│   └── js/                 # JavaScript for Swagger UI
 └── templates
-└── swagger.html        \# HTML template that renders the Swagger UI
+    └── swagger.html        # HTML template that renders the Swagger UI
 ```
 
 ## License
