@@ -1,69 +1,117 @@
-# cgc-gcp-resume-app
+# GCP Resume App - Backend
 
-## Project Overview
+This repository contains the backend API for the GCP Resume App, originally created for the [A Cloud Guru Community Challenge](https://www.pluralsight.com/resources/blog/cloud/cloudguruchallenge-your-resume-on-gcp).
 
-This repository was created as part of the ["Your Resume on GCP" #CloudGuruChallenge](https://acloudguru.com/blog/engineering/cloudguruchallenge-your-resume-on-gcp).
-It's one of three that serves a distinct purpose towards a common goal. 
+The application is a containerized Flask API deployed on Google Cloud Run. Its primary purpose is to provide a simple visitor counter service that interacts with a Google Firestore database.
 
-### App
-> https://github.com/wheelerswebservices/cgc-gcp-resume-app
+## Table of Contents
 
-[See Repository Overview](#repository-overview)
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [API Endpoints](#api-endpoints)
+  - [GET /api/visitors](#get-apivisitors)
+  - [POST /api/visitors](#post-apivisitors)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Deployment](#deployment)
+- [Local Development & Testing](#local-development--testing)
+- [Project Structure](#project-structure)
+- [License](#license)
 
-### Env
-> https://github.com/wheelerswebservices/cgc-gcp-resume-env
+## Overview
 
-[More...](https://github.com/wheelerswebservices/cgc-gcp-resume-env/blob/main/README.md)
+The backend is a standalone REST API built with Python and the Flask framework. It is designed to be built into a Docker container and deployed as a serverless service on Google Cloud Run. The API exposes endpoints to get and increment a visitor count, which is persisted in a Google Firestore database.
 
-### Web
-> https://github.com/wheelerswebservices/cgc-gcp-resume-web
+The project also includes a Swagger UI interface for easy interaction and testing of the API endpoints, defined by an OpenAPI specification.
 
-[More...](https://github.com/wheelerswebservices/cgc-gcp-resume-web/blob/main/README.md)
+## Architecture
 
-## Repository Overview
+The backend infrastructure is composed of the following services:
 
-### Architecture
+* **Google Cloud Run:** Hosts the containerized Flask application, providing a fully managed, serverless environment.
+* **Google Cloud Build:** A CI/CD pipeline, defined in `cloudbuild.yml`, automatically builds the Docker image and deploys it to Cloud Run.
+* **Google Container Registry (or Artifact Registry):** Stores the Docker images built by Cloud Build.
+* **Google Cloud Firestore:** A NoSQL database used to persist the visitor count.
+* **Docker:** Used to containerize the Flask application, ensuring a consistent runtime environment.
+* **Flask & Gunicorn:** The web framework used to build the API and the WSGI server to run it in production.
+* **Swagger/OpenAPI:** Provides API documentation and an interactive UI.
 
-* Docker
-* GCP Cloud Build
-* GCP Container Registry
-* GCP Cloud Run
-* GCP Firestore
+## API Endpoints
 
-### Technology
+The core of the backend is a single resource with two methods, defined in `static/api.json`.
 
-* Flask
-* Gunicorn
-* Python
-* Swagger
+### GET /api/visitors
 
-**Flask**
+* **Description:** Retrieves the current visitor count.
+* **Method:** `GET`
+* **Response:**
+    * `200 OK`
+    * **Body:** `{"visitor_count": <integer>}`
+* **Example:**
+    ```json
+    {
+      "visitor_count": 1234
+    }
+    ```
 
-```
-# Powershell
+### POST /api/visitors
 
-$env:FLASK_APP = 'index'
-$env:GCP_CREDENTIALS = '{
-  "type": "service_account",
-  "project_id": "cloudguruchallenge-2108",
-  "private_key_id": **redacted**,
-  "private_key": **redacted**,
-  "client_email": "wheelersadvice-svc@cloudguruchallenge-2108.iam.gserviceaccount.com",
-  "client_id": **redacted**,
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/wheelersadvice-svc%40cloudguruchallenge-2108.iam.gserviceaccount.com"
-}'
+* **Description:** Increments the visitor count by one and returns the new count.
+* **Method:** `POST`
+* **Response:**
+    * `200 OK`
+    * **Body:** `{"visitor_count": <integer>}`
+* **Example:**
+    ```json
+    {
+      "visitor_count": 1235
+    }
+    ```
 
-python -m flask run
-```
->https://flask.palletsprojects.com/en/2.0.x/quickstart/
+## Getting Started
 
-**Swagger**
+### Prerequisites
 
-> https://dev.to/sanjan/how-to-add-swagger-ui-to-a-plain-flask-api-project-with-an-openapi-specification-file-1jl8
+* [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) installed and configured.
+* A Google Cloud Project with billing enabled.
+* [Docker](https://docs.docker.com/get-docker/) installed locally.
 
-> https://editor.swagger.io/
+### Deployment
 
-> https://github.com/swagger-api/swagger-ui/archive/master.zip
+The application is designed to be deployed via Google Cloud Build.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/wheeleruniverse/cgc-gcp-resume-app.git](https://github.com/wheeleruniverse/cgc-gcp-resume-app.git)
+    cd cgc-gcp-resume-app
+    ```
+
+2.  **Configure Cloud Build:** The `cloudbuild.yml` file is configured to build the Docker image and deploy it to Cloud Run. You may need to adjust project-specific variables within the file.
+
+3.  **Submit the build:**
+    ```bash
+    gcloud builds submit --config cloudbuild.yml .
+    ```
+    This command will trigger the build and deployment process defined in the configuration file.
+
+## Local Development & Testing
+
+You can run the Flask application locally for development and testing.
+
+1.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Set Environment Variables:** The application requires credentials to connect to Firestore. Set the `GCP_CREDENTIALS` environment variable with your service account key.
+    ```bash
+    # Example for Linux/macOS
+    export FLASK_APP=index.py
+    export GCP_CREDENTIALS='{"type": "service_account", ...}'
+    ```
+
+3.  **Run the Flask development server:**
+    ```bash
+    flask run
+    ```
+    This will start a local server,
