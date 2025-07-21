@@ -1,6 +1,6 @@
-# GCP Resume App - Backend
+# GCP Resume App - Backend API
 
-This repository contains the backend API for the GCP Resume App, originally created for the [A Cloud Guru Community Challenge](https://www.pluralsight.com/resources/blog/cloud/cloudguruchallenge-your-resume-on-gcp).
+This repository contains the backend API for the CGC GCP Resume App, originally created for the [A Cloud Guru Community Challenge](https://www.pluralsight.com/resources/blog/cloud/cloudguruchallenge-your-resume-on-gcp).
 
 The application is a containerized Flask API deployed on Google Cloud Run. Its primary purpose is to provide a simple visitor counter service that interacts with a Google Firestore database.
 
@@ -114,4 +114,26 @@ You can run the Flask application locally for development and testing.
     ```bash
     flask run
     ```
-    This will start a local server,
+    This will start a local server, typically on `http://127.0.0.1:5000`.
+
+## Project Structure
+
+```
+.
+├── Dockerfile              \# Defines the container image for the Flask app
+├── README.md               \# This file
+├── cloudbuild.yml          \# Configuration for Google Cloud Build
+├── index.py                \# Main Flask application file with API logic
+├── requirements.txt        \# Python package dependencies
+├── static                  \# Static assets for Swagger UI
+│   ├── api.json            \# The OpenAPI specification file
+│   ├── css/                \# CSS for Swagger UI
+│   ├── img/                \# Favicon images
+│   └── js/                 \# JavaScript for Swagger UI
+└── templates
+└── swagger.html        \# HTML template that renders the Swagger UI
+```
+
+## License
+
+This project is licensed under the MIT License.
