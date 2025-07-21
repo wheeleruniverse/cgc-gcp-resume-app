@@ -1,6 +1,6 @@
 # GCP Resume App - Backend API
 
-This repository contains the backend API for the CGC GCP Resume App, originally created for the [A Cloud Guru Community Challenge](https://www.pluralsight.com/resources/blog/cloud/cloudguruchallenge-your-resume-on-gcp).
+This repository contains the backend API for the GCP Resume App, originally created for the [A Cloud Guru Community Challenge](https://www.pluralsight.com/resources/blog/cloud/cloudguruchallenge-your-resume-on-gcp).
 
 The application is a containerized Flask API deployed on Google Cloud Run. Its primary purpose is to provide a simple visitor counter service that interacts with a Google Firestore database.
 
